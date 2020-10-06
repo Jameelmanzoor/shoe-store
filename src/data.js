@@ -1,4 +1,4 @@
-module.exports = [{
+export default [{
   "id": 1,
   "name": "lite racer adapt 3.0 shoes",
   "price": 59,
