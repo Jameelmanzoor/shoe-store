@@ -60,11 +60,12 @@ const ProductDetails = ({ data }) => {
           <Paper>
             <img src={dataItem.images[val]} alt={dataItem.name} className={classes.image} />
           </Paper>
-          <Grid container spacing='3' justify='center' className={classes.container} alignItems='center'>
+          <Grid container spacing={3} justify='center' className={classes.container} alignItems='center'>
             <Grid item xs={12} sm={2}>
-              <Typography>Avialable Colors</Typography>
+              <Typography>4  Colors Avialable</Typography>
             </Grid>
             {dataItem.images.map((image, index) => (
+
               <Grid item xs={12} sm={2} key={index} onClick={() => setVal(index)}>
                 <img src={image} alt={dataItem.name}
                   className={classes.avialableColor} />
