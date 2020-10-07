@@ -5,6 +5,7 @@ import Home from './components/Home';
 import ProductDetails from './components/ProductDetails';
 import Products from './components/Products';
 import ProductsListing from './components/ProductsListing';
+import data from './data';
 
 
 function App() {
@@ -14,8 +15,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='products' element={<Products />}>
-          <Route path='/' element={<ProductsListing />} />
-          <Route path=':productId' element={<ProductDetails />} />
+          <Route path='/' element={<ProductsListing data={data} />} />
+          <Route path=':productId' element={<ProductDetails data={data} />} />
         </Route>
       </Routes>
     </div>
