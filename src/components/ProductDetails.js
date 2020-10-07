@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 const ProductDetails = ({ data }) => {
+  const [val, setVal] = useState(0);
   const { productId } = useParams();
   const classes = useStyles();
   const dataItem = data[productId - 1];
@@ -57,24 +58,18 @@ const ProductDetails = ({ data }) => {
       <Grid container spacing={3} justify="center">
         <Grid item xs={12} sm={7}>
           <Paper>
-            <img src={dataItem.images[0]} alt={dataItem.name} className={classes.image} />
+            <img src={dataItem.images[val]} alt={dataItem.name} className={classes.image} />
           </Paper>
           <Grid container spacing='3' justify='center' className={classes.container} alignItems='center'>
             <Grid item xs={12} sm={2}>
               <Typography>Avialable Colors</Typography>
             </Grid>
-            <Grid item xs={12} sm={2}>
-              <img src={dataItem.images[0]} alt={dataItem.name} className={classes.avialableColor} />
-            </Grid>
-            <Grid item xs={12} sm={2}>
-              <img src={dataItem.images[1]} alt={dataItem.name} className={classes.avialableColor} />
-            </Grid>
-            <Grid item xs={12} sm={2}>
-              <img src={dataItem.images[2]} alt={dataItem.name} className={classes.avialableColor} />
-            </Grid>
-            <Grid item xs={12} sm={2}>
-              <img src={dataItem.images[3]} alt={dataItem.name} className={classes.avialableColor} />
-            </Grid>
+            {dataItem.images.map((image, index) => (
+              <Grid item xs={12} sm={2} key={index} onClick={() => setVal(index)}>
+                <img src={image} alt={dataItem.name}
+                  className={classes.avialableColor} />
+              </Grid>
+            ))}
           </Grid>
         </Grid>
         <Grid item xs={12} sm={5}>
