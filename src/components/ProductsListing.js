@@ -1,48 +1,58 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
-import data from '../data';
+import { Link } from 'react-router-dom';
 
 const useClasses = makeStyles(() => ({
   root: {
-    maxWidth: 1400,
     margin: '0 auto',
-    marginTop: 20,
-  },
-
-  gridItem: {
-    margin: '0 auto'
+    marginTop: 50,
+    maxWidth: '98vw'
   },
   cardRoot: {
-    maxWidth: 345
+    maxWidth: 360,
+    '&:hover': {
+      border: '1px solid blue',
+    },
   },
+  link: {
+    textDecoration: 'none'
+  }
 }));
 
-const ProductsListing = () => {
+const ProductsListing = ({ data }) => {
 
   const classes = useClasses();
   return (
     <div className={classes.root}>
-      <Grid container spacing={3} className={classes.gridItem}>
-        {data.map((shoe, index) => (
-          <Grid item xs={12} sm={3} key={index}>
-            <Card className={classes.cardRoot}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={shoe.images[1]}
-                  alt={shoe.name}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant='h6'>{shoe.name}</Typography>
-                  <Typography>${shoe.price}</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-        ))}
+      <Grid container spacing={2} className={classes.gridItem}>
+        {data.map((shoe) => {
+          const productId = shoe.id.toString();
+
+          return (
+            <Grid item xs={12} sm={3} key={productId}>
+              <Link to={productId} className={classes.link}>
+                <Card className={classes.cardRoot}>
+                  <CardActionArea>
+
+                    <CardMedia
+                      component="img"
+                      height="180"
+                      image={shoe.images[0]}
+                      alt={shoe.name}
+                    />
+
+                    <CardContent>
+                      <Typography gutterBottom variant='h6'>{shoe.name.toUpperCase()}</Typography>
+                      <Typography>${shoe.price}</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Link>
+            </Grid>
+          )
+        })}
       </Grid>
-    </div>)
+    </div >)
 }
 
 export default ProductsListing;
