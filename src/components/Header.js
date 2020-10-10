@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { IconButton, makeStyles, Tooltip } from '@material-ui/core';
+import { Badge, IconButton, makeStyles, Tooltip } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import logo from '../resources/logo-white.svg';
+import { GlobalContext } from '../context/GlobalContext';
 
 const useStyles = makeStyles(() => ({
+
   root: {
     flexGrow: 1,
   },
@@ -40,6 +42,8 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Header = () => {
+  const { state } = useContext(GlobalContext);
+  const itemsCount = state.length;
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -54,7 +58,7 @@ const Header = () => {
               <Link to='products' className={`${classes.link} ${classes.boxCol}`}>
                 Products</Link>
             </Typography>
-            <a target='_blank' href='https://github.com/Jameelmanzoor' rel='noopener'>
+            <a target='_blank' href='https://github.com/Jameelmanzoor' rel="noopener noreferrer">
               <Tooltip title='GitHub code repository'>
                 <IconButton aria-label='github code repository' className={classes.iconColor}>
                   <GitHubIcon />
@@ -64,7 +68,9 @@ const Header = () => {
             <Link to='cart' className={classes.link}>
               <Tooltip title='Shoping cart'>
                 <IconButton aria-label='add to shopping cart' className={classes.iconColor}>
-                  <ShoppingCartIcon />
+                  <Badge badgeContent={itemsCount} color='secondary'>
+                    <ShoppingCartIcon />
+                  </Badge>
                 </IconButton>
               </Tooltip>
             </Link>
