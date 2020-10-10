@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Button, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { GlobalContext } from '../context/GlobalContext';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 const ProductDetails = ({ data }) => {
+  const { addItem } = useContext(GlobalContext);
   const [val, setVal] = useState(0);
   const { productId } = useParams();
   const classes = useStyles();
@@ -78,6 +80,7 @@ const ProductDetails = ({ data }) => {
           <Typography className={classes.price}>${dataItem.price}</Typography>
           <Typography variant='h6' className={classes.title}>{dataItem.title}</Typography>
           <Typography className={classes.description}>{dataItem.description}</Typography>
+          <Button variant='contained' color='primary' onClick={() => addItem(dataItem)}>Add To Bag</Button>
         </Grid>
       </Grid>
     </div>
