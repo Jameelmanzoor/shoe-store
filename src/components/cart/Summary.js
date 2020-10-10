@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, makeStyles, Paper, Typography } from '@material-ui/core';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import swal from 'sweetalert';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }))
 
-const Summary = ({ productsCount, total }) => {
+const Summary = ({ productsCount, total, payment }) => {
 	const classes = useStyles();
 	return (
 		<Paper elevation={3} className={classes.paper}>
@@ -41,6 +42,10 @@ const Summary = ({ productsCount, total }) => {
 				color='primary'
 				endIcon={<ArrowForwardIcon />}
 				className={classes.btn}
+				onClick={() => {
+					swal("Checkout Succesfullay!", `, You have Purchased ${productsCount} Items!`, "success");
+					payment();
+				}}
 			>Check Out</Button>
 		</Paper >
 	)

@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
 
 const ShopingCart = () => {
   const classes = useStyles();
-  const { state } = useContext(GlobalContext);
+  const { state, removeItem, payment } = useContext(GlobalContext);
   const productsCount = state.length;
 
   const total = state.reduce((total, item) => (total + item.price), 0);
@@ -39,11 +39,11 @@ const ShopingCart = () => {
           <Grid container>
             <Grid item xs={12} sm={8}>
               {state.map((product, index) => (
-                <CartCard product={product} index={index} key={index} />
+                <CartCard product={product} key={index} removeItem={removeItem} />
               ))}
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Summary productsCount={productsCount} total={total} />
+              <Summary productsCount={productsCount} total={total} payment={payment} />
             </Grid>
           </Grid>
         </div>) : <Typography variant='h6' className={classes.empty}>Your Cart is Empty</Typography>

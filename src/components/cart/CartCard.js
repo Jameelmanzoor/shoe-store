@@ -6,23 +6,28 @@ const useStyles = makeStyles(() => ({
   productImage: {
     height: '100px',
     width: '140px'
+  },
+  productName: {
+    textTransform: 'capitalize'
   }
 }
 ))
 
-const CartCard = ({ product, index }) => {
+const CartCard = ({ product, removeItem }) => {
   const classes = useStyles();
   return (
-    <Grid container spacing={3} key={index} justify='center'>
+    <Grid container spacing={3} justify='center'>
       <Grid item xs={12} sm={3}><img src={product.images[0]} alt={product.name}
         className={classes.productImage} />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <Typography variant='h4'>{product.name}</Typography>
-        <Typography variant='h6'>${product.price}</Typography>
+        <Typography variant='h4' className={classes.productName}>{product.name}</Typography>
+        <Typography gutterBottom>Price ${product.price}</Typography>
       </Grid>
       <Grid item xs={12} sm={3}><Tooltip title='Romove from Cart' placement='right-end'>
-        <IconButton aria-label='Remove from Cart'><DeleteIcon /></IconButton>
+        <IconButton aria-label='Remove from Cart' onClick={() => removeItem(product)}>
+          <DeleteIcon />
+        </IconButton>
       </Tooltip></Grid>
     </Grid>
   )

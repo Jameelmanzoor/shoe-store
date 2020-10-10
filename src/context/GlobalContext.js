@@ -6,16 +6,30 @@ export const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, []);
-  console.log("state", state);
+
+  // Add the Product from cart
   const addItem = (payload) => dispatch(
     {
-      type: 'add',
+      type: 'ADD',
       payload,
     }
   );
 
+  // Remove the Product from cart
+  const removeItem = (payload) => dispatch(
+    {
+      type: 'REMOVE',
+      payload,
+    }
+  )
+
+  const payment = () => dispatch({
+    type: 'PAY',
+  }
+  )
+
   return (
-    <GlobalContext.Provider value={{ state, addItem }}>
+    <GlobalContext.Provider value={{ state, addItem, removeItem, payment }}>
       {children}
     </GlobalContext.Provider>
   );
