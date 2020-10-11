@@ -2,10 +2,13 @@ import React from 'react';
 import { Tooltip, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   productImage: {
     height: '100px',
-    width: '140px'
+    [theme.breakpoints.down('xs')]: {
+      height: 50,
+      width: 85
+    }
   },
   productName: {
     textTransform: 'capitalize'
@@ -16,15 +19,15 @@ const useStyles = makeStyles(() => ({
 const CartCard = ({ product, removeItem }) => {
   const classes = useStyles();
   return (
-    <Grid container spacing={3} justify='center'>
-      <Grid item xs={12} sm={3}><img src={product.images[0]} alt={product.name}
+    <Grid container alignItems='center'>
+      <Grid item xs={3} sm={4}><img src={product.images[0]} alt={product.name}
         className={classes.productImage} />
       </Grid>
-      <Grid item xs={12} sm={6}>
-        <Typography variant='h4' className={classes.productName}>{product.name}</Typography>
+      <Grid item xs={7} sm={5}>
+        <Typography variant='h6' className={classes.productName}>{product.name}</Typography>
         <Typography gutterBottom>Price ${product.price}</Typography>
       </Grid>
-      <Grid item xs={12} sm={3}><Tooltip title='Romove from Cart' placement='right-end'>
+      <Grid item xs={1} sm={2}><Tooltip title='Romove from Cart' placement='right-end'>
         <IconButton aria-label='Remove from Cart' onClick={() => removeItem(product)}>
           <DeleteIcon />
         </IconButton>

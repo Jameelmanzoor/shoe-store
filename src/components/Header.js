@@ -9,30 +9,38 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import logo from '../resources/logo-white.svg';
 import { GlobalContext } from '../context/GlobalContext';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 
   root: {
     flexGrow: 1,
   },
   logo: {
     height: 70,
+    [theme.breakpoints.down('sm')]: {
+      height: 50
+    },
 
   },
   link: {
     color: '#ffffff',
     textDecoration: 'none',
-    marginRight: 10
+
   },
   linkContainer: {
     flexGrow: 1,
     display: 'flex',
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      flexGrow: 0,
+      marginLeft: 10
+    },
   },
   iconColor: {
     color: 'white'
   },
   boxCol: {
+    marginRight: 10,
     '&:hover': {
       boxShadow: '#ffffff'
     }
@@ -47,7 +55,7 @@ const Header = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar position='relative'>
         <Toolbar>
           <img src={logo} alt="logo" className={classes.logo} />
           <div className={classes.linkContainer}>
@@ -55,7 +63,7 @@ const Header = () => {
               <Link to='/' className={`${classes.link} ${classes.boxCol}`}>Home</Link>
             </Typography>
             <Typography variant='h6'>
-              <Link to='products' className={`${classes.link} ${classes.boxCol}`}>
+              <Link to='products' className={`${classes.link}`}>
                 Products</Link>
             </Typography>
             <a target='_blank' href='https://github.com/Jameelmanzoor' rel="noopener noreferrer">

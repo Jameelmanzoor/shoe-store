@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2),
 		letterSpacing: '1px',
 		height: 200,
-		borderRadius: 10
+		borderRadius: 10,
 	},
 	btn: {
 		marginTop: 30
