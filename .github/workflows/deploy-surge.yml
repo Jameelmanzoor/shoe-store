@@ -22,7 +22,7 @@ jobs:
 
       # install Node Js
       - name: Install NodeJs
-        uses: actions/setup-node@v1.4.3
+        uses: actions/setup-node@v2.1.2
         with:
           node-version: 12
 
