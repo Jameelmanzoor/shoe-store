@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: 70,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       height: 50
     },
 
@@ -31,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       flexGrow: 0,
-      marginLeft: 10
+      marginLeft: 25
     },
   },
   iconColor: {
@@ -41,10 +41,9 @@ const useStyles = makeStyles((theme) => ({
   },
   boxCol: {
     marginRight: 10,
-    '&:hover': {
-      boxShadow: '#ffffff'
-    }
-
+  },
+  box: {
+    marginRight: 15,
   }
 
 }))
@@ -60,10 +59,10 @@ const Header = () => {
           <img src={logo} alt="logo" className={classes.logo} />
           <div className={classes.linkContainer}>
             <Typography variant='h6'>
-              <Link to='/' className={`${classes.link} ${classes.boxCol}`}>Home</Link>
+              <Link to='/' className={`${classes.link} ${classes.box}`}>Home</Link>
             </Typography>
             <Typography variant='h6'>
-              <Link to='products' className={`${classes.link}`}>
+              <Link to='products' className={`${classes.link} ${classes.boxCol}`}>
                 Products</Link>
             </Typography>
             <a target='_blank' href='https://github.com/Jameelmanzoor' rel="noopener noreferrer">

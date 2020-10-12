@@ -1,9 +1,7 @@
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD':
-      if (!state.find(item => item.id === action.payload.id)) {
-        return [...state, action.payload];
-      } else { return [...state]; }
+      return [...state, action.payload];
 
     case 'REMOVE':
       return state.filter(item => item.id !== action.payload.id);
