@@ -19,7 +19,8 @@ const SpecialButton = ({ dataItem }) => {
   return (
     (!isTrue) ?
       (<Button variant='contained' color='primary' onClick={() => addItem(dataItem)} className={classes.btn}>
-        Add To Cart</Button>) : (<Tooltip title='Already in Cart' placement="top-end" arrow>
+        Add To Cart</Button>) : (<Tooltip title='Already in Cart' placement="top-end"
+        enterDelay={400} leaveDelay={200} arrow>
         <Button variant='contained' color='primary' className={classes.btn}>
           Add To Cart</Button>
       </Tooltip>)
