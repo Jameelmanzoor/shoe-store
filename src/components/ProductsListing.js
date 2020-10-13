@@ -22,7 +22,7 @@ const useClasses = makeStyles((theme) => ({
     textDecoration: 'none',
   },
   cardImage: {
-    height: 160,
+    height: 170,
     [theme.breakpoints.down('sm')]: {
       height: '100%',
       width: '100%'
